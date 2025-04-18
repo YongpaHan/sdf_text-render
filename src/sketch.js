@@ -12,7 +12,7 @@ new p5((p) => {
   };
 
   p.draw = () => {
-    p.background(220);
+    p.background(255);
     p.ellipse(p.mouseX, p.mouseY, 20);
   };
 

@@ -4,14 +4,52 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
     <title>sdf...</title>
   </head>
   <body>
     <div id="container">
       <main id="main">
-        <section id="controler"></section>
+        <section id="controler">
+          <div id="controler-info">
+            <header class="info-header">
+              <h1 class="info-title">SDF 서체 렌더링</h1>
+              <div class="info-lang">
+                <span class="lang-en">EN</span>
+                <span class="lang-ko">한</span>
+              </div>
+            </header>
+            <article class="info-content">
+              <p>
+                헌법개정안이 제2항의 찬성을 얻은 때에는 헌법개정은 확정되며,
+                대통령은 즉시 이를 공포하여야 한다. 국회는 상호원조 또는
+                안전보장에 관한 조약, 중요한 국제조직에 관한 조약,
+                우호통상항해조약, 주권의 제약에 관한 조약, 강화조약, 국가나
+                국민에게 중대한 재정적 부담을 지우는 조약 또는 입법사항에 관한
+                조약의 체결·비준에 대한 동의권을 가진다.
+              </p>
+            </article>
+          </div>
+          <form id="slider-form">
+            <div class="slider-container">
+              <span class="control-label">서체 굵기</span>
+              <input class="slider" type="range" min="0" max="1000" />
+            </div>
+            <div class="slider-container">
+              <span class="control-label">halo</span>
+              <input class="slider" type="range" min="0" max="1000" />
+            </div>
+          </form>
+        </section>
         <div id="resize-handle"></div>
-        <section id="p5canvas"></section>
+        <section id="p5canvas">
+          <div id="click-overlay"></div>
+        </section>
       </main>
     </div>
     <script type="module" src="/src/main.js"></script>

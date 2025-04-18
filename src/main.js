@@ -6,18 +6,18 @@ window.addEventListener("DOMContentLoaded", () => {
   containerResize();
 });
 
-console.log(sketch);
-
 function containerResize() {
   const container = document.getElementById("main"),
     leftBox = document.getElementById("controler"),
     resizeHandle = document.getElementById("resize-handle"),
-    rightBox = document.getElementById("p5canvas");
+    rightBox = document.getElementById("p5canvas"),
+    overlay = document.getElementById("click-overlay");
 
   function handleMove(e) {
     e.preventDefault();
 
     resizeHandle.classList.add("active");
+    overlay.classList.add("active");
     document.body.style.cursor = "col-resize";
 
     if (e.type === "touchstart") {
@@ -36,10 +36,10 @@ function containerResize() {
         ? e.touches[0].pageX - containerRect.left
         : e.pageX - containerRect.left;
     const containerWidth = container.offsetWidth;
-    const maxLeftWidth = 80;
-    const minLeftWidth = 20;
-    const maxRightWidth = 80;
-    const minRightWidth = 20;
+    const maxLeftWidth = 50;
+    const minLeftWidth = 25;
+    const maxRightWidth = 75;
+    const minRightWidth = 50;
 
     let leftWidth = Math.min(
       maxLeftWidth,
@@ -64,6 +64,17 @@ function containerResize() {
     container.style.width = "100%";
     container.style.width = `${container.offsetWidth}px`;
 
+    if (
+      leftWidth === minLeftWidth &&
+      x < containerWidth * (minLeftWidth / 300)
+    ) {
+      leftBox.style.width = "0";
+      rightBox.style.width = "100%";
+      resizeHandle.style.width = "20px";
+    } else {
+      resizeHandle.style.width = "10px";
+    }
+
     if (sketch) {
       const newSize = rightBox.getBoundingClientRect();
       sketch.resizeCanvas(newSize.width, newSize.height);
@@ -72,6 +83,7 @@ function containerResize() {
 
   function stopResize(e) {
     resizeHandle.classList.remove("active");
+    overlay.classList.remove("active");
     document.body.style.cursor = "";
 
     if (e.type === "touchend") {
